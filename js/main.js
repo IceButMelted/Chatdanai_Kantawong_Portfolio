@@ -90,12 +90,13 @@ function renderSide(){
 }
 function renderPane(){
   var pane = $("#pane"), g, c, html;
-  function ul(arr, imgs){ return '<ul class="feat">'+arr.map(function(f,i){ var m = imgs && imgs[i]; return '<li>'+esc(f)+(m ? '<div class="did-shots">'+m.map(function(u){ return '<a href="'+u+'" target="_blank" rel="noopener"><img src="'+u+'" alt="" loading="lazy"></a>'; }).join("")+'</div>' : '')+'</li>'; }).join("")+'</ul>'; }
+  function ul(arr, imgs){ return '<ul class="feat">'+arr.map(function(f,i){ var m = imgs && imgs[i]; return '<li>'+esc(f)+(m ? '<div class="did-shots">'+m.map(function(u){ return '<button type="button" data-view="'+u+'"><img src="'+u+'" alt="" loading="lazy"></button>'; }).join("")+'</div>' : '')+'</li>'; }).join("")+'</ul>'; }
   if(state.game){
     g = GAMES.filter(function(x){ return x.id===state.game; })[0]; c = L(g);
     html = '<div class="crumb"><button data-go="games">'+esc(T("allGames"))+'</button><span>/</span><span>'+esc(g.title)+'</span></div>'
       + (g.cover ? '<div class="hero has-img"'+(g.coverRatio?' style="aspect-ratio:'+g.coverRatio+'"':'')+'>'+cover(g)+'</div><div class="titleblock"><h2>'+esc(g.title)+'</h2><p>'+esc(c.tagline)+'</p></div>'
         : '<div class="hero">'+cover(g)+'<div class="ov"><h2>'+esc(g.title)+'</h2><p>'+esc(c.tagline)+'</p></div></div>')
+      + (g.shots && g.shots.length ? '<div class="shots-wrap"><h3>'+esc(T("shotsH"))+'</h3><div class="shots"'+(g.shots.length%2===0?' style="grid-template-columns:repeat(2,minmax(0,1fr))"':'')+'>'+g.shots.map(function(u,i){ return '<button type="button" data-view="'+u+'"><img src="'+u+'" alt="'+esc(g.title+" "+T("shotAlt")+" "+(i+1))+'" loading="lazy"></button>'; }).join("")+'</div></div>' : '')
       + '<div class="detail"><div>'
       + '<h3>'+esc(T("aboutGame"))+'</h3><p class="desc" style="margin:0">'+esc(c.desc)+'</p>'
       + (c.did.length ? '<h3>'+esc(T("didH"))+'</h3>'+ul(c.did, g.didShots) : '')
@@ -105,8 +106,7 @@ function renderPane(){
       + '<dl class="facts"><dt>'+esc(T("dStatus"))+'</dt><dd><span class="status"><span class="dot '+g.status+'"></span>'+esc(T("s_"+g.status))+'</span></dd>'
       + '<dt>'+esc(T("dYear"))+'</dt><dd>'+esc(yearOf(g))+'</dd><dt>'+esc(T("dRole"))+'</dt><dd>'+esc(c.role)+'</dd>'
       + (g.engine?'<dt>'+esc(T("dEngine"))+'</dt><dd>'+esc(g.engine)+'</dd>':'')+(g.platform?'<dt>'+esc(T("dPlatform"))+'</dt><dd>'+esc(g.platform)+'</dd>':'')+'<dt>'+esc(T("dTeam"))+'</dt><dd>'+esc(T("people")(g.team))+'</dd></dl>'
-      + '<div style="display:flex;flex-wrap:wrap;gap:6px">'+c.genre.map(function(t){ return '<span class="chip">'+esc(t)+'</span>'; }).join("")+'</div></aside></div>'
-      + (g.shots && g.shots.length ? '<div class="shots-wrap"><h3>'+esc(T("shotsH"))+'</h3><div class="shots"'+(g.shots.length%2===0?' style="grid-template-columns:repeat(2,minmax(0,1fr))"':'')+'>'+g.shots.map(function(u,i){ return '<div><img src="'+u+'" alt="'+esc(g.title+" "+T("shotAlt")+" "+(i+1))+'" loading="lazy"></div>'; }).join("")+'</div></div>' : '');
+      + '<div style="display:flex;flex-wrap:wrap;gap:6px">'+c.genre.map(function(t){ return '<span class="chip">'+esc(t)+'</span>'; }).join("")+'</div></aside></div>';
   } else {
     var list = visibleGames(true);
     html = '<div class="pane-head"><div><div class="eyebrow">'+esc(T("sideLibrary"))+'</div><h2>'+esc(T("allGames"))+'</h2></div><div class="filters" role="group">'
@@ -120,6 +120,13 @@ function renderPane(){
   $$("[data-filter]", pane).forEach(function(b){ b.addEventListener("click", function(){ state.filter=b.getAttribute("data-filter"); renderPane(); }); });
 }
 $("#q").addEventListener("input", function(e){ state.q = e.target.value; renderSide(); if(!state.game) renderPane(); });
+
+/* ============ image viewer ============ */
+document.addEventListener("click", function(e){
+  var b = e.target.closest("[data-view]"), v = $("#viewer");
+  if(b){ $("img", v).src = b.getAttribute("data-view"); $("img", v).alt = $("img", b).alt; v.showModal(); }
+  else if(e.target === v || e.target.closest("#viewer")) v.close();
+});
 
 /* ============ copy ============ */
 document.addEventListener("click", function(e){
