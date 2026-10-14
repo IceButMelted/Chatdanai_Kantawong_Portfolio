@@ -1,5 +1,17 @@
 /* ============ EDIT THIS: your games (English + Thai) ============ */
 var GAMES = [
+  { id:"somtum-anomaly", title:"Somtum Anomaly", status:"released", year:"2026", engine:"Roblox", platform:"Roblox", team:8, hue:0, motif:"static", link:"https://www.roblox.com/games/79399613552695/Somtum-Anomaly",
+    cover:"assets/games/somtum-anomaly/cover.jpg", coverRatio:"16/9", coverPos:"50% 40%", icon:"assets/games/somtum-anomaly/icon.jpg", shots:["assets/games/somtum-anomaly/shot-1.jpg","assets/games/somtum-anomaly/shot-2.jpg"],
+    en:{ tagline:"A late-night somtum stall where something is off.",
+      desc:"A horror game on Roblox built by a team of eight. I am the 3D artist for the props, environments and characters, keeping everything low-poly so the game runs well on mobile.",
+      genre:["Horror"], role:"3D Artist · Props, Environment & Character", linkLabel:"Play on Roblox",
+      did:["Modeled the props and everyday items, such as the food display case, jars and stall furniture.","Built the 3D environments, including the late-night street food stall.","Modeled the 3D characters.","Kept every asset low-poly so the game runs smoothly on mobile."],
+      credits:[] },
+    th:{ tagline:"ร้านส้มตำยามดึกที่มีบางอย่างผิดปกติ",
+      desc:"เกมสยองขวัญบน Roblox ที่ทำกัน 8 คน ผมเป็น 3D Artist ทำข้าวของเครื่องใช้ ฉาก และตัวละคร เน้นงานแบบ Lowpoly เพื่อให้เล่นบนมือถือได้ลื่น",
+      genre:["สยองขวัญ"], role:"3D Artist · Props, Environment & Character", linkLabel:"เล่นบน Roblox",
+      did:["โมเดลข้าวของเครื่องใช้และพร็อพในเกม เช่น ตู้กระจกใส่ของ โหล และเฟอร์นิเจอร์ในร้าน","สร้างฉาก 3D รวมถึงร้านส้มตำริมทางยามดึก","โมเดลตัวละคร 3D","คุมงานทั้งหมดให้เป็น Lowpoly เพื่อรองรับการเล่นบนมือถือ"],
+      credits:[] } },
   { id:"the-photo-project", title:"The Photo Project", status:"dev", year:"From mid 2026", yearTh:"ตั้งแต่กลางปี 2026", engine:"", platform:"", team:4, hue:258, motif:"moon", link:"",
     cover:"assets/games/the-photo-project/cover.jpg", coverRatio:"2/1", coverPos:"50% 55%", icon:"assets/games/the-photo-project/icon.jpg", shots:["assets/games/the-photo-project/shot-1.jpg","assets/games/the-photo-project/shot-2.jpg","assets/games/the-photo-project/shot-3.jpg","assets/games/the-photo-project/shot-4.jpg","assets/games/the-photo-project/shot-5.jpg","assets/games/the-photo-project/shot-6.jpg"],
     en:{ tagline:"Game details coming soon.",
