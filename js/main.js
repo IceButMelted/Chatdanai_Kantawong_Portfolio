@@ -109,7 +109,8 @@ function renderPane(){
       + '<h3>'+esc(T("aboutGame"))+'</h3><p class="desc" style="margin:0">'+esc(c.desc)+'</p>'
       + (c.did.length ? '<h3>'+esc(T("didH"))+'</h3>'+ul(c.did, g.didShots) : '')
       + (c.credits.length ? '<h3>'+esc(T("creditsH"))+'</h3>'+ul(c.credits) : '')
-      + '</div></div></div>';
+      + '</div></div></div>'
+      + '<button type="button" class="btn back-fab" data-go="games"><span aria-hidden="true">&larr;</span>'+esc(T("allGames"))+'</button>';
   } else {
     var list = visibleGames(true);
     html = '<div class="pane-head"><div><div class="eyebrow">'+esc(T("sideLibrary"))+'</div><h2>'+esc(T("allGames"))+'</h2></div><div class="filters" role="group">'

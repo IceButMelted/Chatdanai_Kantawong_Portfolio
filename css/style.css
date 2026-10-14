@@ -26,6 +26,7 @@ h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0;text-wrap:balance}
 .btn:hover{border-color:var(--accent)}
 .btn.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
 .btn.primary:hover{filter:brightness(1.08)}
+.back-fab{position:fixed;z-index:9;left:calc(env(safe-area-inset-left,0px) + 16px);bottom:calc(env(safe-area-inset-bottom,0px) + 16px);box-shadow:0 4px 16px rgba(0,0,0,.35)}
 .chip{display:inline-block;padding:2px 9px;border-radius:4px;background:var(--panel2);font:500 12px/1.6 var(--mono);color:var(--muted)}
 
 /* top bar */
@@ -63,7 +64,7 @@ dl.facts dd{margin:0;min-width:0}
 
 /* library */
 .lib{display:grid;grid-template-columns:280px minmax(0,1fr);gap:20px;align-items:start}
-.lib.in-game{grid-template-columns:minmax(0,1fr)}
+.lib.in-game{grid-template-columns:minmax(0,1fr);padding-bottom:64px}
 .lib.in-game .side{display:none}
 .gamepage{display:grid;grid-template-columns:280px minmax(0,1fr);gap:20px;align-items:start}
 .gamepage>.info{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px)}
