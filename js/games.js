@@ -38,7 +38,7 @@ var GAMES = [
       credits:[] } },
   { id:"itim-for-mom", title:"ITIM FOR MOM", status:"released", year:"2026", engine:"Unity", platform:"Web · PC", team:9, hue:28, motif:"moon", link:"https://dxrksom.itch.io/itim-for-mom",
     cover:"assets/games/itim-for-mom/cover.jpg", coverRatio:"1920/620", coverPos:"20% 50%", icon:"assets/games/itim-for-mom/icon.jpg", shots:["assets/games/itim-for-mom/shot-1.jpg","assets/games/itim-for-mom/shot-2.jpg","assets/games/itim-for-mom/shot-3.jpg","assets/games/itim-for-mom/shot-4.jpg"],
-    didShots:{0:["assets/games/itim-for-mom/buff-1.png","assets/games/itim-for-mom/buff-2.png","assets/games/itim-for-mom/buff-3.png","assets/games/itim-for-mom/buff-4.png"], 3:["assets/games/itim-for-mom/rigging.mp4"]},
+    didShots:{0:["assets/games/itim-for-mom/buff-4.png"], 1:["assets/games/itim-for-mom/buff-1.png","assets/games/itim-for-mom/buff-2.png","assets/games/itim-for-mom/buff-3.png"], 3:["assets/games/itim-for-mom/rigging.mp4"]},
     en:{ tagline:"Brave the sun, save ice cream for Mom!",
       desc:"A short, fast-paced side-scrolling platformer about running through scorching heat to deliver Mom's ice cream. Overheating or upsetting Mom is worse than getting burned. Made for Thailand Summer Jam 2026 with the limitations overheating and a roof under the sun.",
       genre:["2D platformer","Game jam"], role:"Sub gameplay programmer", linkLabel:"Play on itch.io",
