@@ -104,7 +104,10 @@ function renderPane(){
       + '<div>'
       + (g.cover ? '<div class="hero has-img"'+(g.coverRatio?' style="aspect-ratio:'+g.coverRatio+'"':'')+'>'+cover(g)+'</div><div class="titleblock"><h2>'+esc(g.title)+'</h2><p>'+esc(c.tagline)+'</p></div>'
         : '<div class="hero">'+cover(g)+'<div class="ov"><h2>'+esc(g.title)+'</h2><p>'+esc(c.tagline)+'</p></div></div>')
-      + (g.shots && g.shots.length ? '<div class="shots-wrap"><h3>'+esc(T("shotsH"))+'</h3><div class="shots"'+(g.shots.length%2===0?' style="grid-template-columns:repeat(2,minmax(0,1fr))"':'')+'>'+g.shots.map(function(u,i){ return '<button type="button" data-view="'+u+'"><img src="'+u+'" alt="'+esc(g.title+" "+T("shotAlt")+" "+(i+1))+'" loading="lazy"></button>'; }).join("")+'</div></div>' : '')
+      + (g.shots && g.shots.length ? '<div class="shots-wrap"><h3>'+esc(T("shotsH"))+'</h3>'
+        + '<button type="button" class="shot-main" data-view="'+g.shots[0]+'"><img src="'+g.shots[0]+'" alt="'+esc(g.title+" "+T("shotAlt")+" 1")+'"></button>'
+        + (g.shots.length > 1 ? '<div class="thumbs">'+g.shots.map(function(u,i){ return '<button type="button" data-shot="'+i+'" aria-label="'+esc(T("shotAlt")+" "+(i+1))+'" aria-current="'+(i===0)+'"><img src="'+u+'" alt="" loading="lazy"></button>'; }).join("")+'</div>' : '')
+        + '</div>' : '')
       + '<div class="detail">'
       + '<h3>'+esc(T("aboutGame"))+'</h3><p class="desc" style="margin:0">'+esc(c.desc)+'</p>'
       + (c.did.length ? '<h3>'+esc(T("didH"))+'</h3>'+ul(c.did, g.didShots) : '')
@@ -121,9 +124,39 @@ function renderPane(){
         : '<div class="empty">'+esc(T("emptyGrid"))+'</div>');
   }
   pane.innerHTML = html;
+  startShots(g && state.game ? g : null);
   $$("[data-filter]", pane).forEach(function(b){ b.addEventListener("click", function(){ state.filter=b.getAttribute("data-filter"); renderPane(); }); });
 }
 $("#q").addEventListener("input", function(e){ state.q = e.target.value; renderSide(); if(!state.game) renderPane(); });
+
+/* ============ screenshot carousel (Steam style) ============ */
+var shotTimer = null, shotIndex = 0, shotGame = null;
+function showShot(i){
+  var main = $(".shot-main"); if(!main || !shotGame) return;
+  shotIndex = (i + shotGame.shots.length) % shotGame.shots.length;
+  var u = shotGame.shots[shotIndex];
+  main.setAttribute("data-view", u);
+  $("img", main).src = u;
+  $("img", main).alt = shotGame.title+" "+T("shotAlt")+" "+(shotIndex+1);
+  $$(".thumbs [data-shot]").forEach(function(b){ b.setAttribute("aria-current", String(+b.getAttribute("data-shot")===shotIndex)); });
+  var strip = $(".thumbs"), cur = $(".thumbs [aria-current=\"true\"]");
+  if(strip && cur) strip.scrollLeft = cur.offsetLeft - (strip.clientWidth - cur.offsetWidth) / 2;
+}
+function startShots(g){ shotGame = g; shotIndex = 0; restartShotTimer(); }
+function restartShotTimer(){
+  clearInterval(shotTimer); shotTimer = null;
+  var g = shotGame;
+  if(!g || !g.shots || g.shots.length < 2 || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  shotTimer = setInterval(function(){
+    var w = $(".shots-wrap");
+    if(document.hidden || $("#viewer").open || (w && w.matches(":hover"))) return;
+    showShot(shotIndex + 1);
+  }, 5000);
+}
+document.addEventListener("click", function(e){
+  var b = e.target.closest("[data-shot]"); if(!b) return;
+  showShot(+b.getAttribute("data-shot")); restartShotTimer();
+});
 
 /* ============ image viewer ============ */
 document.addEventListener("click", function(e){
