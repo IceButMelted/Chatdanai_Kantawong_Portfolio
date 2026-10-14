@@ -90,7 +90,7 @@ function renderSide(){
 }
 function renderPane(){
   var pane = $("#pane"), g, c, html;
-  function ul(arr){ return '<ul class="feat">'+arr.map(function(f){ return '<li>'+esc(f)+'</li>'; }).join("")+'</ul>'; }
+  function ul(arr, imgs){ return '<ul class="feat">'+arr.map(function(f,i){ var m = imgs && imgs[i]; return '<li>'+esc(f)+(m ? '<div class="did-shots">'+m.map(function(u){ return '<a href="'+u+'" target="_blank" rel="noopener"><img src="'+u+'" alt="" loading="lazy"></a>'; }).join("")+'</div>' : '')+'</li>'; }).join("")+'</ul>'; }
   if(state.game){
     g = GAMES.filter(function(x){ return x.id===state.game; })[0]; c = L(g);
     html = '<div class="crumb"><button data-go="games">'+esc(T("allGames"))+'</button><span>/</span><span>'+esc(g.title)+'</span></div>'
@@ -98,7 +98,7 @@ function renderPane(){
         : '<div class="hero">'+cover(g)+'<div class="ov"><h2>'+esc(g.title)+'</h2><p>'+esc(c.tagline)+'</p></div></div>')
       + '<div class="detail"><div>'
       + '<h3>'+esc(T("aboutGame"))+'</h3><p class="desc" style="margin:0">'+esc(c.desc)+'</p>'
-      + (c.did.length ? '<h3>'+esc(T("didH"))+'</h3>'+ul(c.did) : '')
+      + (c.did.length ? '<h3>'+esc(T("didH"))+'</h3>'+ul(c.did, g.didShots) : '')
       + (c.credits.length ? '<h3>'+esc(T("creditsH"))+'</h3>'+ul(c.credits) : '')
       + '</div><aside class="card info">'
       + ((g.link||g.video) ? '<div class="btns">'+(g.link?'<a class="btn primary" href="'+esc(g.link)+'" target="_blank" rel="noopener">'+esc(c.linkLabel)+'</a>':'')+(g.video?'<a class="btn" href="'+esc(g.video)+'" target="_blank" rel="noopener">'+esc(T("watchVideo"))+'</a>':'')+'</div>' : '')
