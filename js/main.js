@@ -91,7 +91,7 @@ function renderSide(){
 function renderPane(){
   var pane = $("#pane"), g, c, html;
   $(".lib").classList.toggle("in-game", !!state.game);
-  function ul(arr, imgs){ return '<ul class="feat">'+arr.map(function(f,i){ var m = imgs && imgs[i]; return '<li>'+esc(f)+(m ? '<div class="did-shots">'+m.map(function(u){ return '<button type="button" data-view="'+u+'"><img src="'+u+'" alt="" loading="lazy"></button>'; }).join("")+'</div>' : '')+'</li>'; }).join("")+'</ul>'; }
+  function ul(arr, imgs){ return '<ul class="feat">'+arr.map(function(f,i){ var m = imgs && imgs[i]; return '<li>'+esc(f)+(m ? '<div class="did-shots">'+m.map(function(u){ return /\.mp4$/.test(u) ? '<video src="'+u+'" autoplay muted loop playsinline preload="metadata"></video>' : '<button type="button" data-view="'+u+'"><img src="'+u+'" alt="" loading="lazy"></button>'; }).join("")+'</div>' : '')+'</li>'; }).join("")+'</ul>'; }
   if(state.game){
     g = GAMES.filter(function(x){ return x.id===state.game; })[0]; c = L(g);
     html = '<div class="crumb"><button data-go="games">'+esc(T("allGames"))+'</button><span>/</span><span>'+esc(g.title)+'</span></div>'

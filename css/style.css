@@ -124,6 +124,7 @@ dl.facts dd{margin:0;min-width:0}
 .detail ul.feat li{margin-bottom:4px}
 .did-shots{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
 .did-shots button{display:block;max-width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.did-shots video{display:block;flex:1 1 100%;min-width:0;border-radius:6px;border:1px solid var(--line)}
 .did-shots img{display:block;max-width:100%;height:auto;border-radius:6px;border:1px solid var(--line)}
 .shots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .shots button{aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:var(--panel2);padding:0;border:0;cursor:zoom-in}
