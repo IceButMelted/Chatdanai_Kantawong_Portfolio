@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IcebutMelted | Game Developer Portfolio</title>
+<meta name="description" content="Portfolio of IcebutMelted: gameplay programmer, 3D artist and tech artist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#about" data-go="about"><b>ICEBUTMELTED</b><span data-i="brandSub"></span></a>
+    <div class="navwrap">
+      <nav aria-label="Sections">
+        <a href="#about" data-go="about" data-i="nav_about"></a>
+        <a href="#games" data-go="games" data-i="nav_games"></a>
+        <a href="#3d" data-go="3d" data-i="nav_3d"></a>
+        <a href="#contact" data-go="contact" data-i="nav_contact"></a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="en" aria-pressed="true">EN</button>
+        <button data-lang="th" aria-pressed="false">ไทย</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="view-about" aria-label="About">
+    <div class="about">
+      <div>
+        <div class="eyebrow" data-i="aboutEyebrow"></div>
+        <h1 data-ih="aboutH1"></h1>
+        <p class="lead" data-ih="aboutLead"></p>
+        <div class="cta">
+          <a class="btn primary" href="#games" data-go="games" data-i="ctaGames"></a>
+          <a class="btn" href="#contact" data-go="contact" data-i="ctaContact"></a>
+        </div>
+      </div>
+      <aside class="card">
+        <div class="avatar">
+          <svg id="avatar" viewBox="0 0 8 8" shape-rendering="crispEdges" role="img" aria-label="Pixel avatar placeholder"></svg>
+          <div><b>IcebutMelted</b><span data-i="avatarNote"></span></div>
+        </div>
+        <dl class="facts">
+          <dt data-i="fRole"></dt><dd data-i="fRoleV"></dd>
+          <dt data-i="fGames"></dt><dd data-i="fGamesV"></dd>
+          <dt data-i="fJams"></dt><dd data-i="fJamsV"></dd>
+          <dt data-i="fTeams"></dt><dd data-i="fTeamsV"></dd>
+        </dl>
+      </aside>
+      <div class="skills">
+        <div class="card"><h3 data-i="skEdu"></h3><p class="edu" data-ih="eduV"></p></div>
+        <div class="card"><h3 data-i="skMain"></h3><ul class="sk"><li data-i="skCs"></li><li>Unity</li><li data-i="skUE"></li><li>Asset Pipeline Management</li></ul></div>
+        <div class="card"><h3 data-i="skSecond"></h3><ul class="sk"><li>3D Modeling</li><li>3D Asset</li><li>3D Texturing</li><li>3D Environment</li></ul></div>
+        <div class="card"><h3 data-i="skSoft"></h3><div class="chips"><span class="chip">Unity</span><span class="chip">Unreal Engine</span><span class="chip">MonoGame</span><span class="chip">Blender</span><span class="chip">Adobe Substance Painter</span><span class="chip">ArmorPaint</span><span class="chip">Adobe Photoshop</span><span class="chip">Adobe After Effects</span><span class="chip">Yarn Spinner</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-games" aria-label="Games" hidden>
+    <div class="lib">
+      <aside class="side" aria-label="Game library">
+        <div class="search"><input id="q" type="search" data-ph="search" aria-label="Search library"></div>
+        <h4 data-i="sideLibrary"></h4>
+        <ul id="side-top"></ul>
+        <h4 data-i="sideGames"></h4>
+        <ul id="side-list"></ul>
+      </aside>
+      <div id="pane"></div>
+    </div>
+  </section>
+
+  <section id="view-3d" aria-label="3D" hidden>
+    <div class="pane-head">
+      <div><div class="eyebrow" data-i="galEyebrow"></div><h2 data-i="galTitle"></h2></div>
+    </div>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section id="view-contact" aria-label="Contact" hidden>
+    <div class="contact">
+      <div class="eyebrow" data-i="nav_contact"></div>
+      <h1 data-i="ctH1"></h1>
+      <p class="lead" data-i="ctLead"></p>
+      <div class="mail"><span class="lab" data-i="ctPhone"></span><code id="c-phone">(+66) 0884324301</code><button class="btn" data-copy="c-phone" data-i="copy"></button></div>
+      <div class="mail"><span class="lab" data-i="ctEmail"></span><code id="c-email">ice.pu2014@gmail.com</code><button class="btn" data-copy="c-email" data-i="copy"></button></div>
+      <p id="copy-note" role="status" style="margin:0 0 8px;color:var(--muted);font-size:13px;min-height:1.4em"></p>
+      <div class="links">
+        <a href="https://icebutmelted.itch.io" target="_blank" rel="noopener"><b>itch.io · IcebutMelted</b><span>icebutmelted.itch.io</span></a>
+        <a href="https://dxrksom.itch.io" target="_blank" rel="noopener"><b data-i="ctTeam"></b><span>dxrksom.itch.io</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer><div class="wrap" data-i="footer"></div></footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/games.js"></script>
+<script src="js/works.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
