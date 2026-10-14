@@ -48,7 +48,7 @@ var GAMES = [
       genre:["แพลตฟอร์มเมอร์ 2D","Game Jam"], role:"Sub Gameplay Programmer", linkLabel:"เล่นบน itch.io",
       did:["ออกแบบและพัฒนาระบบ Buff/Debuff และระบบ Item ด้วย C# บน Unity","พัฒนา custom editor tools ให้ Designer ปรับแต่ง state ของ Item/Buff/Debuff ได้เอง โดยไม่ต้องพึ่ง Programmer","ประสานงานและบริหารจัดการ asset pipeline ระหว่างทีม Art และ Programmer","Rig ตัวละคร 2D ด้วย Unity 2D Animation เพื่อรองรับ animation states"],
       credits:["ออกแบบเกมและเสียง: Phuree, somtangkuijump","โปรแกรม: IceButMelted, Thaizan666666","2D Art: Kaijim, MsaM, POKKOPOK"] } },
-  { id:"no-im-not-a-fox", title:"No, I'm Not A Fox", status:"proto", year:"2026", engine:"Unity", platform:"Web · PC", team:9, hue:8, motif:"static", link:"https://dxrksom.itch.io/no-im-not-a-fox",
+  { id:"no-im-not-a-fox", title:"No, I'm Not A Fox", status:"released", year:"2026", engine:"Unity", platform:"Web · PC", team:9, hue:8, motif:"static", link:"https://dxrksom.itch.io/no-im-not-a-fox",
     cover:"assets/games/no-im-not-a-fox/cover.jpg", coverRatio:"1920/620", coverPos:"28% 50%", icon:"assets/games/no-im-not-a-fox/icon.jpg", shots:["assets/games/no-im-not-a-fox/shot-1.jpg","assets/games/no-im-not-a-fox/shot-2.jpg","assets/games/no-im-not-a-fox/shot-3.jpg","assets/games/no-im-not-a-fox/shot-4.jpg"],
     en:{ tagline:"Welcome to the Oji Fox Parade! Would you like some piping hot Takoyaki?",
       desc:"A grill, serve and observe game set during a festival parade where spirits disguise themselves as foxes. Spot the disguised foxes before you serve them. Made for Global Game Jam 2026 in Chiang Mai.",
