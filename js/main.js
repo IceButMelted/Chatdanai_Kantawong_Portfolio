@@ -74,7 +74,7 @@ function setLang(l){
 (function(){
   var box = $("#slides"), strip = $("#slide-thumbs"); if(!box) return;
   var list = GAMES.filter(function(g){ return g.cover; }), i = 0, timer = null;
-  box.innerHTML = list.map(function(g,k){ return '<a href="'+href(g.id)+'"'+(k?'':' class="on"')+'>'+cover(g)+'<span class="nm">'+esc(g.title)+'</span></a>'; }).join("");
+  box.innerHTML = list.map(function(g,k){ return '<a href="'+href(g.id)+'" style="--bg:url('+g.cover+')"'+(k?'':' class="on"')+'>'+cover(g)+'<span class="nm">'+esc(g.title)+'</span></a>'; }).join("");
   strip.innerHTML = list.map(function(g,k){ return '<button type="button" data-slide="'+k+'" aria-label="'+esc(g.title)+'" aria-current="'+(k===0)+'">'+cover(g)+'</button>'; }).join("");
   var a = $$("a", box), b = $$("button", strip);
   function show(n){

@@ -49,10 +49,12 @@ section[hidden]{display:none}
 .lead{font-size:18px;max-width:60ch;color:var(--muted)}
 .lead strong{color:var(--fg);font-weight:600}
 .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-.slides{position:relative;margin-top:32px;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:var(--panel2)}
-.slides a{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .6s,visibility .6s}
+.slides{position:relative;margin-top:32px;aspect-ratio:16/10;border-radius:10px;overflow:hidden;background:var(--panel2)}
+.slides a{position:absolute;inset:0;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .6s,visibility .6s}
 .slides a.on{opacity:1;visibility:visible}
-.slides img{width:100%;height:100%;object-fit:cover;display:block}
+/* whole cover shown uncropped; a blurred copy fills the bars around wide covers */
+.slides a::before{content:"";position:absolute;inset:-24px;background:var(--bg) center/cover;filter:blur(20px) brightness(.5)}
+.slides img{position:relative;width:100%;height:100%;object-fit:contain;object-position:center!important;display:block}
 .slides .nm{position:absolute;inset:auto 0 0 0;padding:48px 20px 16px;background:linear-gradient(transparent,rgba(5,8,14,.85));color:#fff;font:700 clamp(20px,3vw,30px)/1.2 var(--display)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px}
 .avatar{display:flex;gap:16px;align-items:center;margin-bottom:18px}
@@ -186,6 +188,7 @@ footer{border-top:1px solid var(--line);margin-inline:-16px;padding:18px 16px;co
 
 @media (max-width:860px){
   .about,.gamepage,.d3{grid-template-columns:minmax(0,1fr)}
+  .about > aside{order:-1}
   .gamepage>.info{position:static}
   .lib{grid-template-columns:minmax(0,1fr)}
   .side{position:static}

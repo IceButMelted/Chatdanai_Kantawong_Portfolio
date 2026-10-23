@@ -5,9 +5,9 @@ var I18N = {
     nav_about:"About", nav_games:"Games", nav_3d:"3D", nav_contact:"Contact",
     aboutEyebrow:"Gameplay programmer · 3D artist · Tech artist",
     aboutH1:"I build the <em>gameplay</em>, the 3D and the tech behind it.",
-    aboutLead:"I'm <strong>IcebutMelted</strong>, a gameplay programmer, 3D artist and tech artist. I work in small teams on Unity and MonoGame projects, mostly game jams. <strong>Seven projects</strong> are in my library, from Thailand Summer Jam to Global Game Jam.",
+    aboutLead:"I'm <strong>Chatdanai Kantawong</strong> (IcebutMelted), a gameplay programmer, 3D artist and tech artist. I work in small teams on Unity and MonoGame projects, mostly game jams. <strong>Seven projects</strong> are in my library, from Thailand Summer Jam to Global Game Jam.",
     ctaGames:"Browse my games", ctaContact:"Get in touch",
-    avatarNote:"Photo coming soon",
+    realName:"Chatdanai Kantawong",
     fRole:"Role", fRoleV:"Gameplay programmer, 3D artist, tech artist",
     fGames:"Games", fGamesV:"7 projects, 4 on itch.io, 1 on Roblox",
     fJams:"Jams", fJamsV:"Thailand Summer Jam, Global Game Jam 2026",
@@ -28,16 +28,16 @@ var I18N = {
     skEdu:"Education", eduV:"<strong>Chiang Mai University</strong>, 2024 – present<br>Bachelor of Science<br>College of Arts, Media and Technology<br>Digital Game",
     skMain:"Main skills", skCs:"C# (intermediate level)", skUE:"Unreal Engine (Blueprint)", skSecond:"Secondary skills", skSoft:"Software",
     ctPhone:"Phone", ctEmail:"Email", copy:"Copy", copied:"Copied.", copyManual:"Press Ctrl+C or Cmd+C to copy.",
-    footer:"© IcebutMelted · game developer portfolio"
+    footer:"© Chatdanai Kantawong (IcebutMelted) · game developer portfolio"
   },
   th:{
     brandSub:"เกมเพลย์ · 3D · เทคอาร์ต",
     nav_about:"เกี่ยวกับ", nav_games:"เกม", nav_3d:"งาน 3D", nav_contact:"ติดต่อ",
     aboutEyebrow:"Gameplay Programmer · 3D Artist · Tech Artist",
     aboutH1:"ผมสร้าง<em>เกมเพลย์</em> งาน 3D และเทคนิคเบื้องหลังทั้งหมด",
-    aboutLead:"ผมคือ <strong>IcebutMelted</strong> Gameplay Programmer, 3D Artist และ Tech Artist ทำงานในทีมเล็กด้วย Unity และ MonoGame ส่วนใหญ่เป็นเกมในงาน Game Jam ตอนนี้มี <strong>7 โปรเจกต์</strong> ตั้งแต่ Thailand Summer Jam ถึง Global Game Jam",
+    aboutLead:"ผมคือ <strong>ฉัตรดนัย กันทะวงศ์</strong> (IcebutMelted) Gameplay Programmer, 3D Artist และ Tech Artist ทำงานในทีมเล็กด้วย Unity และ MonoGame ส่วนใหญ่เป็นเกมในงาน Game Jam ตอนนี้มี <strong>7 โปรเจกต์</strong> ตั้งแต่ Thailand Summer Jam ถึง Global Game Jam",
     ctaGames:"ดูเกมของผม", ctaContact:"ติดต่อผม",
-    avatarNote:"รูปโปรไฟล์ (เร็วๆ นี้)",
+    realName:"ฉัตรดนัย กันทะวงศ์",
     fRole:"บทบาท", fRoleV:"Gameplay Programmer, 3D Artist, Tech Artist",
     fGames:"เกม", fGamesV:"7 โปรเจกต์ (4 เกมบน itch.io, 1 เกมบน Roblox)",
     fJams:"Game Jam", fJamsV:"Thailand Summer Jam, Global Game Jam 2026",
@@ -58,7 +58,7 @@ var I18N = {
     skEdu:"การศึกษา", eduV:"<strong>มหาวิทยาลัยเชียงใหม่</strong> 2024 - ปัจจุบัน<br>หลักสูตรวิทยาศาสตร์บัณฑิต<br>วิทยาลัยศิลปะ สื่อ และเทคโนโลยี<br>สาขาดิจิทัลเกม",
     skMain:"ทักษะหลัก", skCs:"C# (ระดับกลาง)", skUE:"Unreal Engine (Blueprint)", skSecond:"ทักษะรอง", skSoft:"ซอฟต์แวร์",
     ctPhone:"โทร", ctEmail:"อีเมล", copy:"คัดลอก", copied:"คัดลอกแล้ว", copyManual:"กด Ctrl+C หรือ Cmd+C เพื่อคัดลอก",
-    footer:"© IcebutMelted · พอร์ตโฟลิโอนักพัฒนาเกม"
+    footer:"© ฉัตรดนัย กันทะวงศ์ (IcebutMelted) · พอร์ตโฟลิโอนักพัฒนาเกม"
   }
 };
 var lang = "en";
