@@ -41,34 +41,56 @@ function cover(g, w, h, variant){
 (function(){
   var r = rng(20260), s = '', hue = 22, x, y;
   for(y=0;y<8;y++){ for(x=0;x<4;x++){ if(r()>.5){ var c='hsl('+(hue+y*8)+' 85% '+(48+y*2)+'%)'; s+='<rect x="'+x+'" y="'+y+'" width="1" height="1" fill="'+c+'"/><rect x="'+(7-x)+'" y="'+y+'" width="1" height="1" fill="'+c+'"/>'; } } }
-  $("#avatar").innerHTML = s;
+  if($("#avatar")) $("#avatar").innerHTML = s;
 })();
 
 /* ============ routing ============ */
-var VIEWS = ["about","games","3d","contact"];
-var state = { view:"about", game:null, filter:"all", q:"" };
+/* one HTML file per page; a game page is game.html?id=<game id> */
+var PAGES = { about:"index.html", games:"games.html", "3d":"3d.html", contact:"contact.html" };
+var state = { view:document.body.getAttribute("data-page"), game:null, filter:"all", q:"" };
+function isGame(id){ return GAMES.some(function(g){ return g.id===id; }); }
+function href(h){ return PAGES[h] || "game.html?id="+encodeURIComponent(h); }
 
-function fromHash(){
-  var h = ""; try{ h = location.hash.slice(1); }catch(e){}
-  if(!h){ state.view="about"; state.game=null; return; }
-  if(VIEWS.indexOf(h)>-1){ state.view=h; if(h!=="games") state.game=null; return; }
-  if(GAMES.some(function(g){ return g.id===h; })){ state.view="games"; state.game=h; return; }
+/* old hash links (index.html#games, index.html#autobahn) still land on the right page */
+(function(){ var h = location.hash.slice(1); if(state.view==="about" && h && (PAGES[h] || isGame(h))) location.replace(href(h)); })();
+if(state.view==="game"){
+  state.view = "games"; state.game = new URLSearchParams(location.search).get("id");
+  if(!isGame(state.game)) location.replace("games.html");
 }
-function go(h){
-  try{ if(location.hash.slice(1)!==h) location.hash = h; }catch(e){}
-  if(VIEWS.indexOf(h)>-1){ state.view=h; state.game=null; }
-  else { state.view="games"; state.game=h; }
-  render(true);
-}
-window.addEventListener("hashchange", function(){ fromHash(); render(true); });
+
 document.addEventListener("click", function(e){
-  var a = e.target.closest("[data-go]"); if(a){ e.preventDefault(); go(a.getAttribute("data-go")); return; }
+  var b = e.target.closest("[data-back]");
+  if(b){ if(document.referrer.indexOf(location.origin+"/")===0) history.back(); else location.href = "games.html"; return; }
+  var a = e.target.closest("[data-go]");
+  if(a){ if(a.tagName!=="A"){ e.preventDefault(); location.href = href(a.getAttribute("data-go")); } return; }
   var l = e.target.closest("[data-lang]"); if(l){ setLang(l.getAttribute("data-lang")); }
 });
 function setLang(l){
   lang = l; try{ localStorage.setItem("lang", l); }catch(e){}
-  render(false);
+  render();
 }
+
+/* ============ home: game cover slideshow with thumbnails (Steam style), one cover every 5 s ============ */
+(function(){
+  var box = $("#slides"), strip = $("#slide-thumbs"); if(!box) return;
+  var list = GAMES.filter(function(g){ return g.cover; }), i = 0, timer = null;
+  box.innerHTML = list.map(function(g,k){ return '<a href="'+href(g.id)+'"'+(k?'':' class="on"')+'>'+cover(g)+'<span class="nm">'+esc(g.title)+'</span></a>'; }).join("");
+  strip.innerHTML = list.map(function(g,k){ return '<button type="button" data-slide="'+k+'" aria-label="'+esc(g.title)+'" aria-current="'+(k===0)+'">'+cover(g)+'</button>'; }).join("");
+  var a = $$("a", box), b = $$("button", strip);
+  function show(n){
+    a[i].classList.remove("on"); b[i].setAttribute("aria-current", "false");
+    i = (n + a.length) % a.length;
+    a[i].classList.add("on"); b[i].setAttribute("aria-current", "true");
+    strip.scrollLeft = b[i].offsetLeft - (strip.clientWidth - b[i].offsetWidth) / 2;
+  }
+  function restart(){
+    clearInterval(timer);
+    if(a.length < 2 || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    timer = setInterval(function(){ if(!document.hidden) show(i + 1); }, 5000);
+  }
+  strip.addEventListener("click", function(e){ var t = e.target.closest("[data-slide]"); if(t){ show(+t.getAttribute("data-slide")); restart(); } });
+  restart();
+})();
 
 /* ============ library ============ */
 var FILTERS = ["all","released","dev","proto"];
@@ -94,6 +116,7 @@ function renderPane(){
   function ul(arr, imgs){ return '<ul class="feat">'+arr.map(function(f,i){ var m = imgs && imgs[i]; return '<li>'+esc(f)+(m ? '<div class="did-shots">'+m.map(function(u){ return /\.mp4$/.test(u) ? '<video src="'+u+'" autoplay muted loop playsinline preload="metadata"></video>' : '<button type="button" data-view="'+u+'"><img src="'+u+'" alt="" loading="lazy"></button>'; }).join("")+'</div>' : '')+'</li>'; }).join("")+'</ul>'; }
   if(state.game){
     g = GAMES.filter(function(x){ return x.id===state.game; })[0]; c = L(g);
+    document.title = g.title+" | IcebutMelted";
     html = '<div class="crumb"><button data-go="games">'+esc(T("allGames"))+'</button><span>/</span><span>'+esc(g.title)+'</span></div>'
       + '<div class="gamepage"><aside class="card info">'
       + ((g.link||g.video) ? '<div class="btns">'+(g.link?'<a class="btn primary" href="'+esc(g.link)+'" target="_blank" rel="noopener">'+esc(c.linkLabel)+'</a>':'')+(g.video?'<a class="btn" href="'+esc(g.video)+'" target="_blank" rel="noopener">'+esc(T("watchVideo"))+'</a>':'')+'</div>' : '')
@@ -113,7 +136,7 @@ function renderPane(){
       + (c.did.length ? '<h3>'+esc(T("didH"))+'</h3>'+ul(c.did, g.didShots) : '')
       + (c.credits.length ? '<h3>'+esc(T("creditsH"))+'</h3>'+ul(c.credits) : '')
       + '</div></div></div>'
-      + '<button type="button" class="btn back-fab" data-go="games"><span aria-hidden="true">&larr;</span>'+esc(T("allGames"))+'</button>';
+      + '<button type="button" class="btn back-fab" data-back><span aria-hidden="true">&larr;</span>'+esc(T("back"))+'</button>';
   } else {
     var list = visibleGames(true);
     html = '<div class="pane-head"><div><div class="eyebrow">'+esc(T("sideLibrary"))+'</div><h2>'+esc(T("allGames"))+'</h2></div><div class="filters" role="group">'
@@ -127,7 +150,7 @@ function renderPane(){
   startShots(g && state.game ? g : null);
   $$("[data-filter]", pane).forEach(function(b){ b.addEventListener("click", function(){ state.filter=b.getAttribute("data-filter"); renderPane(); }); });
 }
-$("#q").addEventListener("input", function(e){ state.q = e.target.value; renderSide(); if(!state.game) renderPane(); });
+if($("#q")) $("#q").addEventListener("input", function(e){ state.q = e.target.value; renderSide(); if(!state.game) renderPane(); });
 
 /* ============ screenshot carousel (Steam style) ============ */
 var shotTimer = null, shotIndex = 0, shotGame = null;
@@ -174,16 +197,14 @@ document.addEventListener("click", function(e){
 });
 
 /* ============ render ============ */
-function render(scroll){
+function render(){
   document.documentElement.lang = lang;
   $$("[data-i]").forEach(function(el){ el.textContent = T(el.getAttribute("data-i")); });
   $$("[data-ih]").forEach(function(el){ el.innerHTML = T(el.getAttribute("data-ih")); });
   $$("[data-ph]").forEach(function(el){ el.placeholder = T(el.getAttribute("data-ph")); el.setAttribute("aria-label", T(el.getAttribute("data-ph"))); });
   $$("[data-lang]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-lang")===lang)); });
-  VIEWS.forEach(function(v){ $("#view-"+v).hidden = v!==state.view; });
   $$("nav a").forEach(function(a){ if(a.getAttribute("data-go")===state.view) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
   if(state.view==="games"){ renderSide(); renderPane(); }
   if(state.view==="3d") renderGallery();
-  if(scroll){ try{ window.scrollTo(0,0); }catch(e){} }
 }
-fromHash(); render(false);
+render();

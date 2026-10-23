@@ -27,12 +27,16 @@ Any static host works the same way (Netlify, Cloudflare Pages, itch.io page, you
 ## Project structure
 
 ```
-index.html            page markup (header, About, Games, 3D, Contact)
+index.html            About page
+games.html            game library
+game.html             one game's page (game.html?id=<game id>)
+3d.html               3D gallery
+contact.html          Contact page
 css/style.css         all styles; colors and fonts are tokens at the top
 js/i18n.js            UI text in English and Thai (About, buttons, labels)
 js/games.js           your games, English and Thai   <-- edit this to add or change games
 js/works.js           3D gallery items               <-- edit this to add 3D images
-js/main.js            routing, library, game pages, language switch
+js/main.js            links between pages, library, game pages, language switch
 assets/games/<id>/    cover.jpg, icon.jpg, shot-1.jpg ... for each game
 assets/3d/            put your 3D images here
 ```
@@ -70,11 +74,12 @@ Keep the whole site under a few MB so it loads fast.
 ## Change text, contact and colors
 
 - About text, labels, contact lines: `js/i18n.js` (both `en` and `th` blocks).
-- Phone and email: `index.html`, in the Contact section (`#c-phone`, `#c-email`).
+- Phone and email: `contact.html` (`#c-phone`, `#c-email`).
 - Colors and fonts: the `:root` tokens at the top of `css/style.css` (light), plus the two dark blocks right below.
 - Profile photo: replace the pixel placeholder `<svg id="avatar">` in `index.html` with an `<img>`.
 
 ## Notes
 
 - Fonts load from Google Fonts. Without internet the page falls back to system fonts.
-- The site uses hash links (`#games`, `#autobahn`), so it works on any static host without server rules.
+- Each page is its own HTML file, so the browser Back button goes to the previous page. Old hash links (`index.html#autobahn`) redirect to the new pages.
+- The header is copied in every page file; change it in all five.
