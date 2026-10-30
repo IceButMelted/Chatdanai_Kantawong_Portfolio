@@ -1,4 +1,4 @@
-/* Layout: sticky top tab bar; Games tab is a Steam-style library (left list + main pane); 3D tab is a model stage with controls. */
+/* Layout: sticky top tab bar; Games tab is a Steam-style library (left list + main pane). */
 :root{
   --bg:#f1f3f7; --panel:#ffffff; --panel2:#e7eaf1; --line:#d3d9e4;
   --fg:#151a25; --muted:#586277; --accent:#c8410b; --accent-fg:#ffffff; --good:#12703a; --warn:#8a5a00;
@@ -145,30 +145,6 @@ dl.facts dd{margin:0;min-width:0}
 .info .btns{display:flex;flex-direction:column;gap:8px}
 .info .btn{justify-content:center}
 
-/* 3d */
-.d3{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start}
-.stage{position:relative;aspect-ratio:4/3;max-height:640px;width:100%;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:radial-gradient(ellipse at 50% 35%,var(--panel2),var(--panel) 75%);touch-action:pan-y;cursor:grab}
-.stage:active{cursor:grabbing}
-.stage canvas{display:block;width:100%;height:100%}
-.stage .hint{position:absolute;left:12px;bottom:10px;font:400 12px var(--mono);color:var(--muted);pointer-events:none}
-.stage .fail{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:var(--muted)}
-.d3 .side-col{display:flex;flex-direction:column;gap:14px}
-.tabs{display:flex;flex-direction:column;gap:6px}
-.tabs button{text-align:left;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel);cursor:pointer}
-.tabs button[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
-.tabs b{display:block;font-family:var(--display);font-size:16px}
-.tabs span{font-size:13px;color:var(--muted)}
-.toggles{display:flex;flex-wrap:wrap;gap:8px}
-.toggles button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-.stat{display:grid;grid-template-columns:1fr auto;gap:6px 12px;font-size:14px;margin:0}
-.stat dt{color:var(--muted)} .stat dd{margin:0;font-family:var(--mono);font-variant-numeric:tabular-nums}
-
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.work{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
-.work .ph{aspect-ratio:4/3;max-width:100%;border:1px dashed var(--line);border-radius:10px;background:var(--panel);display:grid;place-items:center;color:var(--muted);font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase}
-.work figcaption{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px}
-.work figcaption b{font:600 16px var(--display);flex-basis:100%}
-.work figcaption span:not(.chip){color:var(--muted);font-size:13px}
 .skills ul.sk{margin:0;padding-left:18px}
 .skills ul.sk li{margin-bottom:2px}
 .skills .edu{margin:0;font-size:14px}
@@ -187,7 +163,7 @@ dl.facts dd{margin:0;min-width:0}
 footer{border-top:1px solid var(--line);margin-inline:-16px;padding:18px 16px;color:var(--muted);font:400 12px var(--mono)}
 
 @media (max-width:860px){
-  .about,.gamepage,.d3{grid-template-columns:minmax(0,1fr)}
+  .about,.gamepage{grid-template-columns:minmax(0,1fr)}
   .about > aside{order:-1}
   .gamepage>.info{position:static}
   .lib{grid-template-columns:minmax(0,1fr)}
@@ -208,4 +184,3 @@ html{color-scheme:light}
 body{margin:0}
 [hidden]{display:none!important}
 img{max-width:100%}
-.ph img{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}

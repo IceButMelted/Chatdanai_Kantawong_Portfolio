@@ -40,7 +40,7 @@ function cover(g, w, h, variant){
 
 /* ============ routing ============ */
 /* one HTML file per page; a game page is game.html?id=<game id> */
-var PAGES = { about:"index.html", games:"games.html", "3d":"3d.html", contact:"contact.html" };
+var PAGES = { about:"index.html", games:"games.html", contact:"contact.html" };
 var state = { view:document.body.getAttribute("data-page"), game:null, filter:"all", q:"" };
 function isGame(id){ return GAMES.some(function(g){ return g.id===id; }); }
 function href(h){ return PAGES[h] || "game.html?id="+encodeURIComponent(h); }
@@ -199,6 +199,5 @@ function render(){
   $$("[data-lang]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-lang")===lang)); });
   $$("nav a").forEach(function(a){ if(a.getAttribute("data-go")===state.view) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
   if(state.view==="games"){ renderSide(); renderPane(); }
-  if(state.view==="3d") renderGallery();
 }
 render();

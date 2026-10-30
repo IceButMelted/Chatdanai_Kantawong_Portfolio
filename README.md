@@ -1,9 +1,9 @@
 # IcebutMelted Portfolio
 
-Static portfolio site for a game developer (gameplay programmer, 3D artist, tech artist).
+Static portfolio site for a game developer (gameplay programmer, tech artist).
 Plain HTML, CSS and JavaScript. No build step, no dependencies.
 
-- Pages: About, Games (Steam-style library with a page per game), 3D gallery, Contact
+- Pages: About, Games (Steam-style library with a page per game), Contact
 - Languages: English and Thai, with an EN / ไทย switch
 - Light and dark theme follow the visitor's system setting
 
@@ -30,15 +30,12 @@ Any static host works the same way (Netlify, Cloudflare Pages, itch.io page, you
 index.html            About page
 games.html            game library
 game.html             one game's page (game.html?id=<game id>)
-3d.html               3D gallery
 contact.html          Contact page
 css/style.css         all styles; colors and fonts are tokens at the top
 js/i18n.js            UI text in English and Thai (About, buttons, labels)
 js/games.js           your games, English and Thai   <-- edit this to add or change games
-js/works.js           3D gallery items               <-- edit this to add 3D images
 js/main.js            links between pages, library, game pages, language switch
 assets/games/<id>/    cover.jpg, icon.jpg, shot-1.jpg ... for each game
-assets/3d/            put your 3D images here
 ```
 
 ## Add or edit a game
@@ -64,12 +61,6 @@ and `link` are all optional.
 
 Image tips: cover about 1400 px wide, screenshots about 900 px wide, icon 128 x 128 px, JPEG quality 80.
 Keep the whole site under a few MB so it loads fast.
-
-## Add 3D images
-
-1. Copy images into `assets/3d/`.
-2. Open `js/works.js` and set `src:"assets/3d/your-image.jpg"` on each item (title, note and tool too).
-   Add or remove items in the `WORKS` array.
 
 ## Change text, contact and colors
 
