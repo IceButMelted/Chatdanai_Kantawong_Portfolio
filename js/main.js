@@ -37,12 +37,6 @@ function cover(g, w, h, variant){
   return s + '</svg>';
 }
 
-/* pixel avatar placeholder */
-(function(){
-  var r = rng(20260), s = '', hue = 22, x, y;
-  for(y=0;y<8;y++){ for(x=0;x<4;x++){ if(r()>.5){ var c='hsl('+(hue+y*8)+' 85% '+(48+y*2)+'%)'; s+='<rect x="'+x+'" y="'+y+'" width="1" height="1" fill="'+c+'"/><rect x="'+(7-x)+'" y="'+y+'" width="1" height="1" fill="'+c+'"/>'; } } }
-  if($("#avatar")) $("#avatar").innerHTML = s;
-})();
 
 /* ============ routing ============ */
 /* one HTML file per page; a game page is game.html?id=<game id> */
